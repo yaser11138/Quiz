@@ -1,0 +1,65 @@
+{% extends "homepage.html"%}
+{% load form_filter %}
+<!DOCTYPE html>
+<html lang="en">
+  <head> {% load static %}
+    <meta charset="UTF-8">
+    <title>Quiz </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Quiz/Quiz.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body style="background-color: #a92727;">
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center row">
+        <div class="col-md-10 col-lg-10">
+            {{ question.id }}
+            <form action="{% url 'quiz_run' quiz.id question.id %}" method="post" >
+                {% csrf_token%}
+          <div class="border">
+            <div class="question bg-white p-3 border-bottom">
+              <div class="d-flex flex-row justify-content-between align-items-center mcq">
+                <h4> {{ quiz.title }}Quiz - {{ quiz.subject }} </h4>
+                <span> </span>
+              </div>
+            </div>
+            <div class="question bg-white p-3 border-bottom">
+              <div class="d-flex flex-row align-items-center question-title">
+                <h3 class="text-danger">Q. </h3>
+                <h5 class="mt-1 ml-2">{{ question.title }}</h5>
+              </div>
+              <div class="ans ml-2">
+                <label class="radio">
+                  <input type="radio" name="choice" value="{{ question.option1 }}">
+                  <span>{{ question.option1 }} </span>
+                </label>
+              </div>
+              <div class="ans ml-2">
+                <label class="radio">
+                  <input type="radio" name="choice" value="{{ question.option2 }}">
+                  <span>{{ question.option2 }} </span>
+                </label>
+              </div>
+              <div class="ans ml-2">
+                <label class="radio">
+                  <input type="radio" name="choice" value="{{ question.option3 }}">
+                  <span>{{ question.option3 }}</span>
+                </label>
+              </div>
+              <div class="ans ml-2">
+                <label class="radio">
+                  <input type="radio" name="choice" value="{{ question.option4 }}">
+                  <span>{{ question.option4 }} </span>
+                </label>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white">
+              <input class="btn btn-primary btn-lg btn-block" type="submit" value="Next">
+            </div>
+          </div>
+         </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
