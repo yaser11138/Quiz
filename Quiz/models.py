@@ -28,8 +28,12 @@ class Quiz(models.Model):
     def qet_qeustion(self, student):
         return Question.objects.filter(quiz=self).exclude(answers__student=student).order_by("?")[0]
 
-    def get_url(self):
-        return f"/quiz/{self.id}/"
+    def is_owner(self, teacher):
+        if self.owner == teacher:
+            return True
+        else:
+            return False
+
 
 class Question(models.Model):
     title = models.CharField(max_length=256)

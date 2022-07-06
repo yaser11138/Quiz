@@ -1,16 +1,15 @@
 {% extends "Quiz/homepage.html" %}
 {% load form_filter %}
 {% block main %}
-<body style="background-color: #7e7676;">
-    <section class="vh-100">
+<body style="background-color: #565454;">
+    <section class=" d-flex align-items-center">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card shadow-2-strong" style="border-radius: 1rem;">
               <div class="card-body p-5 text-center">
-                <h3 class="mb-5">Login</h3>
-
-                <form  method="post">
+                <h3 class="mb-5">Create</h3>
+                   <form  method="post">
                     {% csrf_token %}
                     {% for field in form %}
                             <div class="form-outline mb-4" id="{{ field.id_for_label}}">
@@ -25,10 +24,7 @@
                                 {% endif %}
                             </div>
                     {% endfor %}
-                     {% if form.non_field_errors  %}
-                    <p class="p-3 mb-2 bg-danger text-white">{{ form.non_field_errors | striptags }}</p>
-                    {% endif%}
-                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
+                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Create">
                 </form>
               </div>
             </div>

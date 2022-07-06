@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class QuizRegisterForm(UserCreationForm):
+class RegisterForm(UserCreationForm):
     TypeChoice = (
         ("T", "Teacher"),
         ("S", "Student"),
@@ -31,7 +31,7 @@ class QuizRegisterForm(UserCreationForm):
         grade = self.cleaned_data["grade"]
         if self.cleaned_data["type"] == "S":
             if grade is None:
-                raise forms.ValidationError("This Field is Required")
+                raise forms.ValidationError("This field is required")
             elif grade >= 12:
                 raise forms.ValidationError("Grade must be between 1 and 12")
             else:
@@ -50,7 +50,7 @@ class QuizRegisterForm(UserCreationForm):
             return None
 
     def save(self, commit=True):
-        user = super(QuizRegisterForm, self).save(commit=False)
+        user = super(RegisterForm, self).save(commit=False)
         if commit:
             user.save()
             if self.cleaned_data["type"] == "T":

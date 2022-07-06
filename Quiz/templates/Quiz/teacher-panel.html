@@ -44,12 +44,9 @@
   <section id="hero" class="d-flex align-items-center">
 
     <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
-      <h1>Build Better Websites With Bikin</h1>
+      <h1>Hello Teacher {{ request.user.username }}</h1>
       <h2>We are team of talented designers making websites with Bootstrap</h2>
-      {% if request.user.is_authenticated %}
-        {% else %}
-      <a href="{% url 'login' %}" class="btn-get-started scrollto">Get Started</a>
-      {% endif %}
+        <a href="{% url 'add_quiz' %}" class="btn-get-started scrollto">Add Quiz</a>
     </div>
 
   </section><!-- End Hero -->
@@ -62,7 +59,7 @@
 
         <div class="section-title">
           <h2>Quiz</h2>
-          <p>Some interesting Quizzes</p>
+          <p> Your Quizzes</p>
         </div>
         <table class="table table-secondary">
           <thead>
@@ -71,7 +68,7 @@
               <th scope="col">Name</th>
               <th scope="col">Subject</th>
               <th scope="col">Score</th>
-              <th scope="col">Take Quiz</th>
+              <th scope="col">Edit quiz</th>
             </tr>
           </thead>
           {% for quiz in quizzes %}
@@ -81,7 +78,7 @@
                 <td>{{ quiz.name }}</td>
                 <td>{{ quiz.subject }}</td>
                 <td>{{ quiz.score }}</td>
-                <td><button type="button" class="btn btn-info"><a href="{{ quiz.get_url }}">{% if quiz|is_finished:request.user.student %}See result{% else %}Take Quiz{% endif %}</a></button></td>
+                <td><button type="button" class="btn btn-info"><a href="{% url "quiz_details" quiz.id %}">Edit Quiz</a></button></td>
             </tr>
           </tbody>
           {% endfor %}

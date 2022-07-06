@@ -41,18 +41,32 @@
   </header><!-- End Header -->
     {% block main  %}
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-
-    <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
-      <h1>Build Better Websites With Bikin</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
-      {% if request.user.is_authenticated %}
-        {% else %}
-      <a href="{% url 'login' %}" class="btn-get-started scrollto">Get Started</a>
-      {% endif %}
+   <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+                <h3 class="mb-5">Update Quiz</h3>
+                   <form  method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                            <div class="form-outline mb-4" id="{{ field.id_for_label}}">
+                                <label for="{{ field.id_for_label}}" class="form-label">{{ field.label }}</label>
+                                    <input type={{field|field_type}} value="{{ field.value }}" id="{{ field.id_for_label}}" name="{{ field.html_name }}" class="form-control form-control-lg"   />
+                            </div>
+                    {% endfor %}
+                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Upadate">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
+           <button class="btn btn-primary btn-lg btn-block"><a href="{% url 'question_add' quiz.id %}" class="text-white">Add Question</a></button>
     </div>
-
-  </section><!-- End Hero -->
+    </section>
 
   <main id="main">
 
@@ -61,27 +75,52 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Quiz</h2>
-          <p>Some interesting Quizzes</p>
+          <h2>Questions</h2>
+          <p> Quiz Questions</p>
         </div>
         <table class="table table-secondary">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Subject</th>
+              <th scope="col">name</th>
               <th scope="col">Score</th>
-              <th scope="col">Take Quiz</th>
+              <th scope="col">Delete question</th>
             </tr>
           </thead>
-          {% for quiz in quizzes %}
+          {% for question in quiz.questions.all %}
           <tbody>
             <tr>
               <th scope="row">#</th>
-                <td>{{ quiz.name }}</td>
-                <td>{{ quiz.subject }}</td>
-                <td>{{ quiz.score }}</td>
-                <td><button type="button" class="btn btn-info"><a href="{{ quiz.get_url }}">{% if quiz|is_finished:request.user.student %}See result{% else %}Take Quiz{% endif %}</a></button></td>
+                <td>{{ question.title }}</td>
+                <td>{{ question.score }}</td>
+                <td><button type="button" class="btn btn-info"><a href="{% url 'delete_question' quiz.id question.id %}">Delete Question</a></button></td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
+    </section><!-- End Services Section -->
+
+    <section>
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Particpations</h2>
+          <p> Quiz Particpations</p>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Grade</th>
+            </tr>
+          </thead>
+          {% for particpation in quiz.particpations.all %}
+          <tbody>
+            <tr>
+              <th scope="row">#</th>
+                <td>{{ particpation.name }}</td>
+                <td>{{ particpation.grade }}</td>
             </tr>
           </tbody>
           {% endfor %}
@@ -94,12 +133,9 @@
     {% endblock main %}
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
     <div class="footer-top">
-      <div class="container">
-
+        <div class="container">
     <div class="container d-md-flex py-4">
-
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
           &copy; Copyright <strong><span>Bikin</span></strong>. All Rights Reserved
@@ -130,5 +166,4 @@
   <!-- Template Main JS File -->
 
 </body>
-
 </html>

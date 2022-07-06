@@ -18,12 +18,14 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (venv)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery-3.2.1.slim" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/../djangoProject2\templates" />
+        <option value="$MODULE_DIR$/Accounts/templates" />
+        <option value="$MODULE_DIR$/Quiz/templates" />
       </list>
     </option>
   </component>
