@@ -3,34 +3,36 @@
 {% block tittle %}Create New Quiz{% endblock %}
 {% block main %}
 <body style="background-color: #565454;">
-    <section class=" d-flex align-items-center">
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div class="card shadow-2-strong" style="border-radius: 1rem;">
-              <div class="card-body p-5 text-center">
-                <h3 class="mb-5">Create</h3>
-                   <form  method="post">
-                    {% csrf_token %}
-                    {% for field in form %}
-                            <div class="form-outline mb-4" id="{{ field.id_for_label}}">
-                                <label for="{{ field.id_for_label}}" class="form-label">{{ field.label }}</label>
-                                {% if field.errors %}
-                                    <input type={{field|field_type}}  id="{{ field.id_for_label}}" name="{{ field.html_name }}" class="form-control form-control-lg is-invalid" />
-                                    <div id="validationServer03Feedback" class="invalid-feedback">
-                                    {{ field.errors | striptags }}
-                                    </div>
-                                {% else %}
-                                    <input type={{field|field_type}} id="{{ field.id_for_label}}" name="{{ field.html_name }}" class="form-control form-control-lg"   />
-                                {% endif %}
-                            </div>
-                    {% endfor %}
-                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Create">
-                </form>
-              </div>
+  <section class=" d-flex align-items-center">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h3 class="mb-5">Create
+              </h3>
+              <form  method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-outline mb-4" id="{{ field.id_for_label}}">
+                  <label for="{{ field.id_for_label}}" class="form-label">{{ field.label }}
+                  </label>
+                  {% if field.errors %}
+                  <input type={{field|field_type}}  id="{{ field.id_for_label}}" name="{{ field.html_name }}" class="form-control form-control-lg is-invalid" />
+                  <div id="validationServer03Feedback" class="invalid-feedback">
+                    {{ field.errors | striptags }}
+                  </div>
+                  {% else %}
+                  <input type={{field|field_type}} id="{{ field.id_for_label}}" name="{{ field.html_name }}" class="form-control form-control-lg"   />
+                  {% endif %}
+                </div>
+                {% endfor %}
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Create">
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
-{% endblock main %}
+    </div>
+  </section>
+  {% endblock main

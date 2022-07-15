@@ -25,7 +25,7 @@ def login(request):
         if form.is_valid():
             django_login(request, form.get_user())
             if request.user.is_student():
-                return redirect("quiz_home")
+                return redirect("quiz-home")
             else:
                 return redirect("teacher-panel")
         else:

@@ -1,47 +1,55 @@
 {% extends "Quiz/homepage.html"%}
 {% load form_filter %}
 {% block tittle %}{{ quiz.id }}Quiz{% endblock %}
-  {% block main %} }
-      <section id="services" class="services vh-100">
-    <div class="container mt-5">
-      <div class="d-flex justify-content-center row">
-        <div class="col-md-10 col-lg-10">
-            <form action="{% url 'take_quiz' quiz.id question.id %}" method="post" >
-                {% csrf_token%}
+{% block main %}
+<section id="services" class="services vh-100">
+  <div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+      <div class="col-md-10 col-lg-10">
+        <form action="{% url 'take_quiz' quiz.id question.id %}" method="post" >
+          {% csrf_token%}
           <div class="border">
             <div class="question bg-white p-3 border-bottom">
               <div class="d-flex flex-row justify-content-between align-items-center mcq">
-                <h4> {{ quiz.title }}Quiz - {{ quiz.subject }} </h4>
-                <span> </span>
+                <h4> {{ quiz.title }}Quiz - {{ quiz.subject }}
+                </h4>
+                <span>
+                </span>
               </div>
             </div>
             <div class="question bg-white p-3 border-bottom">
               <div class="d-flex flex-row align-items-center question-title">
-                <h3 class="text-danger">Q. </h3>
-                <h5 class="mt-1 ml-2">{{ question.title }}</h5>
+                <h3 class="text-danger">Q.
+                </h3>
+                <h5 class="mt-1 ml-2">{{ question.title }}
+                </h5>
               </div>
               <div class="ans ml-2">
                 <label class="radio">
                   <input type="radio" name="choice" value="{{ question.option1 }}">
-                  <span>{{ question.option1 }} </span>
+                  <span>{{ question.option1 }}
+                  </span>
                 </label>
               </div>
               <div class="ans ml-2">
                 <label class="radio">
                   <input type="radio" name="choice" value="{{ question.option2 }}">
-                  <span>{{ question.option2 }} </span>
+                  <span>{{ question.option2 }}
+                  </span>
                 </label>
               </div>
               <div class="ans ml-2">
                 <label class="radio">
                   <input type="radio" name="choice" value="{{ question.option3 }}">
-                  <span>{{ question.option3 }}</span>
+                  <span>{{ question.option3 }}
+                  </span>
                 </label>
               </div>
               <div class="ans ml-2">
                 <label class="radio">
                   <input type="radio" name="choice" value="{{ question.option4 }}">
-                  <span>{{ question.option4 }} </span>
+                  <span>{{ question.option4 }}
+                  </span>
                 </label>
               </div>
             </div>
@@ -49,9 +57,9 @@
               <input class="btn btn-primary btn-lg btn-block" type="submit" value="Next">
             </div>
           </div>
-         </form>
-        </div>
+        </form>
       </div>
     </div>
-      </section>
-  {% endblock main %}
+  </div>
+</section>
+{% endblock main %} %}

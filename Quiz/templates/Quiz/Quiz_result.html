@@ -1,22 +1,30 @@
 {% extends "Quiz/homepage.html" %}
 {% block main %}
 <body style="background-color: #c0c0c0;">
-    <section class="vh-100">
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div class="card shadow-2-strong" style="border-radius: 1rem;">
-              <div class="card-body p-5 text-center">
-                <h3 class="mb-5">Result</h3>
-                  <h4 class="mb-5"> Quiz {{ quiz.name }} /// subject : {{ quiz.subject }} </h4>
-                  <div class="form-outline mb-4">
-                      <p> Quiz score is {{ quiz.score }} </p>
-                      <p> Your Score is {{ score }}</p>
-                  </div>
+  <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h3 class="mb-5">Result
+              </h3>
+              <h4 class="mb-5"> {{ quiz.name }} Quiz , subject : {{ quiz.subject }}
+              </h4>
+              <div class="form-outline mb-4">
+                <p> Quiz score is {{ quiz.score }}
+                </p>
+                <p> Your Score is {{ score }}
+                </p>
+                <button class="btn btn-info btn-lg btn-block" type="button" >
+                  <a href="{% url "quiz-home"%}">Get Back
+                  </a>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-{% endblock main %}
+    </div>
+  </section>
+  {% endblock main %}
