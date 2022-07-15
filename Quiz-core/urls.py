@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Quiz.views import quiz_homepage, quiz_teacherpanel
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("Accounts.urls")),
     path("quiz/", include("Quiz.urls")),
+    path("", quiz_homepage, name="quiz-home"),
+    path("teacher-panel", quiz_teacherpanel, name="teacher-panel")
 ]

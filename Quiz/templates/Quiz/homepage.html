@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Bikin Bootstrap Template - Index</title>
+    <title>{% block tittle %}Quiz-Home{% endblock %}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'Quiz/style.css'%}" rel="stylesheet">
-
+<link rel="stylesheet" type="text/css" href="{% static 'Quiz/Quiz.css' %}">
   <!-- =======================================================
   * Template Name: Bikin - v4.7.0
   * Template URL: https://bootstrapmade.com/bikin-free-simple-landing-page-template/
@@ -31,12 +31,25 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+    <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">Quiz</a></h1>
+      <h1 class="logo"><a href="index.html">Bikin</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+            {% if not user.is_authenticated %}
+          <li><a class="nav-link scrollto " href="{% url 'login' %}">Login</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'register' %}">Register</a></li>
+            {% else %}
+          <li><a class="nav-link scrollto" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+        {% endif %}
+      </nav><!-- .navbar -->
+
     </div>
   </header><!-- End Header -->
     {% block main  %}
@@ -46,8 +59,7 @@
     <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
       <h1>Build Better Websites With Bikin</h1>
       <h2>We are team of talented designers making websites with Bootstrap</h2>
-      {% if request.user.is_authenticated %}
-        {% else %}
+      {% if not request.user.is_authenticated %}
       <a href="{% url 'login' %}" class="btn-get-started scrollto">Get Started</a>
       {% endif %}
     </div>
@@ -81,14 +93,13 @@
                 <td>{{ quiz.name }}</td>
                 <td>{{ quiz.subject }}</td>
                 <td>{{ quiz.score }}</td>
-                <td><button type="button" class="btn btn-info"><a href="{{ quiz.get_url }}">{% if quiz|is_finished:request.user.student %}See result{% else %}Take Quiz{% endif %}</a></button></td>
+                <td><button type="button" class="btn btn-info"><a href="{% url "quiz_start" quiz.id %}">{% if quiz|is_finished:request.user.student %}See result{% else %}Take Quiz{% endif %}</a></button></td>
             </tr>
           </tbody>
           {% endfor %}
         </table>
       </div>
     </section><!-- End Services Section -->
-
 
   </main><!-- End #main -->
     {% endblock main %}
@@ -111,13 +122,6 @@
           <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bikin-free-simple-landing-page-template/ -->
           Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
-      </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
       </div>

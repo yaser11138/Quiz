@@ -5,7 +5,7 @@ from Accounts.models import Student, Teacher
 class Quiz(models.Model):
     name = models.CharField(max_length=10)
     subject = models.CharField(max_length=10)
-    particpations = models.ManyToManyField(Student, null=True, blank=True)
+    particpations = models.ManyToManyField(Student, blank=True)
     owner = models.ForeignKey(Teacher, on_delete=models.CASCADE)
 
     @property
